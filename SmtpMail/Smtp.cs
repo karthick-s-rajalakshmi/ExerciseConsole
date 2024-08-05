@@ -15,7 +15,6 @@ namespace SmtpMail
         {
             string file = $"File_{DateTime.Now.ToString("yyyy-MM-dd")}.txt";
 
-            
             try
             {
                 StreamWriter sw = new StreamWriter($"D:{file}.txt", false);
