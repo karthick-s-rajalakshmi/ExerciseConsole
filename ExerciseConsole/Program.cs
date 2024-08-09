@@ -25,13 +25,6 @@ namespace ExerciseConsole
             //3. Add the configuration to the service collection
             serviceCollection.AddSingleton<IConfiguration>(configuration);
 
-            Test obj = new Test(configuration);
-           // string from=obj.ToAddressMethod();
-            //string to = obj.FromAddressMethod();
-
-
-            //JsonReader obj = new JsonReader();
-            //obj.JsonDataRead();
 
              Smtp objSmtp = new Smtp(configuration);
            
