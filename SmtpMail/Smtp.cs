@@ -6,22 +6,31 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace SmtpMail
 {
-   public class Smtp
+    public class Smtp
     {
+        private readonly IConfiguration configuration;
+
+        public Smtp(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+
+        public string password ;
+        public string fromEmailId { set; get; }
         public void FileLog()
         {
             string file = $"File_{DateTime.Now.ToString("yyyy-MM-dd")}.txt";
 
             try
             {
-                StreamWriter sw = new StreamWriter($"D:{file}.txt", false);
-               
                 Send();
-              
-               sw.WriteLine($"Succefully sent Mail in{DateTime.Now.ToString("yyyy-MM-dd")} ");
+                StreamWriter sw = new StreamWriter($"D:{file}.txt", false);
+                sw.WriteLine($"Succefully sent Mail in{DateTime.Now.ToString("yyyy-MM-dd")} ");
                 sw.Close();
 
             }
@@ -34,14 +43,14 @@ namespace SmtpMail
             }
 
         }
-        public void Send()
+        private void Send()
         {
             Console.WriteLine("Hello World!");
-            SendEmail(GetUserName(), GetPassword());
-          
-        }
+            SendEmail(FromAddressMethod(), Password());
 
-        public static void SendEmail(string fromAddress, string password)
+        }
+     
+        private  void SendEmail(string fromAddress, string password)
         {
             using SmtpClient email = new SmtpClient
             {
@@ -50,7 +59,7 @@ namespace SmtpMail
                 EnableSsl = true,
                 Host = "smtp.gmail.com",
                 Port = 587,
-                Credentials = new NetworkCredential(fromAddress, "itsubmbsfadkmito")
+                Credentials = new NetworkCredential(fromAddress, password)
 
             };
             string subject = "Reminder";
@@ -58,7 +67,7 @@ namespace SmtpMail
             try
             {
                 Console.WriteLine("sending email ");
-                email.Send(fromAddress, ToAddress(), subject, body);
+                email.Send(fromAddress, ToAddressMethod(), subject, body);
                 Console.WriteLine("email sent ");
             }
             catch (SmtpException e)
@@ -67,22 +76,30 @@ namespace SmtpMail
             }
 
         }
-        public static string GetUserName()
-        {
-            return "karthick.s.rajalakshmi@gmail.com";
-        }
-        public static string GetPassword()
-        {
-            return "Muruga@36";
-        }
-       
 
-        public static string ToAddress()
+        public string FromAddressMethod()
         {
-            return "karthick.s.rajalakshmi@gmail.com";
-            //return "sureshkumar.duraisamy@anaiyaantechnologies.com";
+            var dataFromJsonFile = configuration.GetSection("fromAddress").Value;
+            //  Console.WriteLine(dataFromJsonFile);
+            return dataFromJsonFile;
+
+        }
+        public string ToAddressMethod()
+        {
+            var dataFromJsonFile1 = configuration.GetSection("toAddress").Value;
+            Console.WriteLine(dataFromJsonFile1);
+            return dataFromJsonFile1;
+
+        }
+
+        public string Password()
+        {
+            var dataFromJsonFile1 = configuration.GetSection("password").Value;
+            Console.WriteLine(dataFromJsonFile1);
+            return dataFromJsonFile1;
         }
 
 
     }
+   
 }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciseConsole", "Exercise
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmtpMail", "SmtpMail\SmtpMail.csproj", "{4D397347-BABA-4CB8-89B1-DACDA70FB043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReadWrite", "FileReadWrite\FileReadWrite.csproj", "{165B281B-EACF-479C-9213-597EEFF9EAFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileReadWrite", "FileReadWrite\FileReadWrite.csproj", "{165B281B-EACF-479C-9213-597EEFF9EAFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
