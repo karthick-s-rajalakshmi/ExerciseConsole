@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace SmtpMail
 {
@@ -22,12 +23,40 @@ namespace SmtpMail
 
         public string password ;
         public string fromEmailId { set; get; }
+        string body = $"this is main email @{DateTime.UtcNow:F}";
+        public void JsontoString()
+        {
+            string read;
+            read = null;
+            try
+            {
+                StreamReader reader = new StreamReader("C:\\Users\\Admin\\source\\repos\\ExerciseConsole\\ExerciseConsole\\WeatherForecast-Result.json");
+                string data = reader.ReadToEnd();
+                List<JsonRead> result = JsonConvert.DeserializeObject<List<JsonRead>>(data);
+
+                foreach (var source in result)
+                {
+                    body += $"{source.date}   {source.temperatureC}  {source.temperatureF}   " +
+                        $"{source.summary} \n";
+                }
+
+            }
+            catch (Exception e)
+            {
+                body += e;
+            }
+
+
+        }
+
+
         public void FileLog()
         {
             string file = $"File_{DateTime.Now.ToString("yyyy-MM-dd")}.txt";
 
             try
             {
+                JsontoString();
                 Send();
                 StreamWriter sw = new StreamWriter($"D:{file}.txt", false);
                 sw.WriteLine($"Succefully sent Mail in{DateTime.Now.ToString("yyyy-MM-dd")} ");
@@ -59,11 +88,13 @@ namespace SmtpMail
                 EnableSsl = true,
                 Host = "smtp.gmail.com",
                 Port = 587,
-                Credentials = new NetworkCredential(fromAddress, password)
+                Credentials = new NetworkCredential(fromAddress,password)
 
             };
-            string subject = "Reminder";
-            string body = $"this is main email @{DateTime.UtcNow:F}";
+            var dataFromJsonFile = configuration.GetSection("subject").Value;
+            string subject = dataFromJsonFile;
+           // var dataFromJsonFile1 = configuration.GetSection("subject").Value;
+          
             try
             {
                 Console.WriteLine("sending email ");

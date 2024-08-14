@@ -10,16 +10,21 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FileReadWrite\FileReadWrite.csproj" />
+    <ProjectReference Include="..\JsonReader\JsonReader.csproj" />
     <ProjectReference Include="..\SmtpMail\SmtpMail.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="AppSetting.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="WeatherForecast-Result.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -1,5 +1,5 @@
 ﻿using System;
-//using ReadJson;
+using JsonReader;
 using SmtpMail;
 using FileReadWrite;
 using System.IO;
@@ -12,6 +12,10 @@ namespace ExerciseConsole
     {
         static void Main(string[] args)
         {
+           // JsonRead readerObj = new JsonRead();
+           // readerObj.JsontoString();
+
+          
             //1. creat a service collection for ID
             var serviceCollection = new ServiceCollection();
 
@@ -29,6 +33,9 @@ namespace ExerciseConsole
              Smtp objSmtp = new Smtp(configuration);
            
             objSmtp.FileLog();
+         
+
+
 
 
             // ReadFile read = new ReadFile();

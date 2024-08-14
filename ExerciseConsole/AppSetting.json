@@ -1,10 +1,9 @@
 {
   "fromAddress": "karthick.s.rajalakshmi@gmail.com",
-  "toAddress": "sureshkumar.duraisamy@Anaiyaantechnologies.com",
+   "toAddress": "sureshkumar.duraisamy@gmail.com",
   "subject": "reminder",
   "password": "itsubmbsfadkmito",
   "body": "reading json file and sending mail"
-
 
 
 }
