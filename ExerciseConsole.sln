@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmtpMail", "SmtpMail\SmtpMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileReadWrite", "FileReadWrite\FileReadWrite.csproj", "{165B281B-EACF-479C-9213-597EEFF9EAFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonReader", "JsonReader\JsonReader.csproj", "{A46E1FAC-D069-448D-9C6E-74B2B08B29B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonReader", "JsonReader\JsonReader.csproj", "{A46E1FAC-D069-448D-9C6E-74B2B08B29B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

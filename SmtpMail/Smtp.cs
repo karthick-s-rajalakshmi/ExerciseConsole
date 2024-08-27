@@ -13,6 +13,10 @@ namespace SmtpMail
 {
     public class Smtp
     {
+        public Smtp()
+        {
+
+        }
         private readonly IConfiguration configuration;
 
         public Smtp(IConfiguration configuration)
@@ -78,7 +82,12 @@ namespace SmtpMail
             SendEmail(FromAddressMethod(), Password());
 
         }
-     
+        public string toAddress { get; set; }
+        public void SendingEmailAddressApi(string value)
+        {
+            toAddress = value;
+            FileLog();
+        }
         private  void SendEmail(string fromAddress, string password)
         {
             using SmtpClient email = new SmtpClient
@@ -98,7 +107,9 @@ namespace SmtpMail
             try
             {
                 Console.WriteLine("sending email ");
+                
                 email.Send(fromAddress, ToAddressMethod(), subject, body);
+              //  email.Send(fromAddress,toAddress , subject, body);
                 Console.WriteLine("email sent ");
             }
             catch (SmtpException e)
@@ -111,15 +122,18 @@ namespace SmtpMail
         public string FromAddressMethod()
         {
             var dataFromJsonFile = configuration.GetSection("fromAddress").Value;
-            //  Console.WriteLine(dataFromJsonFile);
+            
             return dataFromJsonFile;
 
         }
+      
+      
         public string ToAddressMethod()
         {
             var dataFromJsonFile1 = configuration.GetSection("toAddress").Value;
-            Console.WriteLine(dataFromJsonFile1);
-            return dataFromJsonFile1;
+
+              return dataFromJsonFile1;
+          
 
         }
 
